@@ -1,0 +1,22 @@
+{
+    "name": "BrunoMikoski.InputSpriteMap.Editor",
+    "rootNamespace": "BrunoMikoski.InputSpriteMap",
+    "references": [
+        "BrunoMikoski.InputSpriteMap",
+        "BrunoMikoski.ScriptableObjectCollection",
+        "BrunoMikoski.ScriptableObjectCollection.Editor",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

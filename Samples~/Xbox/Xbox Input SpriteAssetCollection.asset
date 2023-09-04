@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d678e2bd3a04b004198e380e52cb413c, type: 3}
+  m_Name: Xbox Input SpriteAssetCollection
+  m_EditorClassIdentifier: 
+  guid:
+    value1: 5331612032259519139
+    value2: -4312198891565525835
+  items:
+  - {fileID: 11400000, guid: 1df63d1fb76ce4044996b11d17591163, type: 2}
+  - {fileID: 11400000, guid: 846f16b894811024d8f8ca1f7cb03bd8, type: 2}
+  - {fileID: 11400000, guid: 4b171c2d158a6f643bf713ae4c70ff8a, type: 2}
+  - {fileID: 11400000, guid: d9e4fdfaa72aa7546967aabd2c0f0e5e, type: 2}
+  - {fileID: 11400000, guid: 1746148ca35d49d43ae096d518666ddc, type: 2}
+  - {fileID: 11400000, guid: 867f972f886186f4685525eb2cb0c942, type: 2}
+  - {fileID: 11400000, guid: 1a73069f5c51bca458c1976bdd88cd6a, type: 2}
+  - {fileID: 11400000, guid: bf0750cab70df0a4bae02a905c45c7f2, type: 2}
+  - {fileID: 11400000, guid: 11bc7849edb2b1d42a727be04f5dd468, type: 2}
+  - {fileID: 11400000, guid: 0210ccc2a0be50743af9f7e0c055b371, type: 2}
+  - {fileID: 11400000, guid: 89096bf1e441489479de1cef33bc90bc, type: 2}
+  - {fileID: 11400000, guid: 86a1cf15d8c466d47a54cb04a3249948, type: 2}
+  - {fileID: 11400000, guid: f0a6fa723905e584391933812599ca0d, type: 2}
+  - {fileID: 11400000, guid: 688b8350faaef3f4c82bf5c6126f5110, type: 2}
+  - {fileID: 11400000, guid: 664ea3b1307674c4ba7e14046b4c8e3e, type: 2}
+  - {fileID: 11400000, guid: ee0c32ea71ccba348ba082c822ce145b, type: 2}
+  - {fileID: 11400000, guid: 3973a5fae7ee95f468115838d9428f37, type: 2}
+  - {fileID: 11400000, guid: e9df614393b7d3849a9bfafe90042779, type: 2}
+  - {fileID: 11400000, guid: 7f380b2b23b67c44aa789c3561fb642e, type: 2}
+  - {fileID: 11400000, guid: 0203144c8455fcb4797bd7ec471079ee, type: 2}
+  automaticallyLoaded: 1
+  generateAsPartialClass: 1
+  generateAsBaseClass: 0
+  generatedFileLocationPath: Assets/_Project/Generated/Scripts
+  generatedStaticClassFileName: XboxInputAssetCollectionStatic
+  generateStaticFileNamespace: BrunoMikoski.InputSpriteMap
+  targetSpriteAssetGuid: 344c097a78bdeec438a881eb8df0d4ed
+  identifiers:
+  - Xbox
+  - Generic
+  bindingPrefixes:
+  - <Gamepad>
+  - <Joystick>

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ffcc83270ffb04e9aeac36364c66aa, type: 3}
+  m_Name: L_Key_Dark
+  m_EditorClassIdentifier: 
+  guid:
+    value1: 5008432860308626695
+    value2: -5017485016926930763
+  collectionGUID:
+    value1: 5136760133891357057
+    value2: 8697937117933199271
+  additionalNames:
+  - /l
+  displayFormat: <sprite name="{0}"/>
+  spriteName: PC Atlas_54

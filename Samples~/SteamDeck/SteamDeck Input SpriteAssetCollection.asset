@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d678e2bd3a04b004198e380e52cb413c, type: 3}
+  m_Name: SteamDeck Input SpriteAssetCollection
+  m_EditorClassIdentifier: 
+  guid:
+    value1: 5558800489003201309
+    value2: -5157548197160722012
+  items:
+  - {fileID: 11400000, guid: 8281541119e701549bc786f0bab12fef, type: 2}
+  - {fileID: 11400000, guid: 4cef87937b522984e8b28f630c6dd315, type: 2}
+  - {fileID: 11400000, guid: d0c8777091693444c95273806adb455d, type: 2}
+  - {fileID: 11400000, guid: e6242a7b2964893488d749abae6c05ef, type: 2}
+  - {fileID: 11400000, guid: 408a83fa7a0a36d45b25ec9d166db183, type: 2}
+  - {fileID: 11400000, guid: 945361b200ae72a4d9ae8016c2958cc3, type: 2}
+  - {fileID: 11400000, guid: 96cafca3bae13344ab378d48027e44b0, type: 2}
+  - {fileID: 11400000, guid: 582c64426c077704baeb8ec0be28eea6, type: 2}
+  - {fileID: 11400000, guid: 21609b4aa98814143ac61cf37b224952, type: 2}
+  - {fileID: 11400000, guid: b2f5927aa32889b49aec1c59668082ec, type: 2}
+  - {fileID: 11400000, guid: 48bb4c2f83e5a564285b6d8911a6d8a6, type: 2}
+  - {fileID: 11400000, guid: a9dead4e84dd38d4c9d087adee695065, type: 2}
+  - {fileID: 11400000, guid: 0d8c05cd486f2ce4e89247e1fe4235fb, type: 2}
+  - {fileID: 11400000, guid: 4abcdc348a142804cbddbfc98f0f57d8, type: 2}
+  - {fileID: 11400000, guid: 5c248fd9ee55c2643817172b060f7f98, type: 2}
+  - {fileID: 11400000, guid: 0d13d80225507644e85db172cc0d7aed, type: 2}
+  - {fileID: 11400000, guid: baa21262e3258c24ea3389ed50a70722, type: 2}
+  - {fileID: 11400000, guid: 62e6daa4e56821741abf513689487d67, type: 2}
+  - {fileID: 11400000, guid: 140ecd50f2e872343a34df2cc56a92e6, type: 2}
+  - {fileID: 11400000, guid: 2cc83cc9baf2e174e8defa53e44b9044, type: 2}
+  - {fileID: 11400000, guid: c873b25bbd4d4fd44a8d1666436f3f00, type: 2}
+  - {fileID: 11400000, guid: 83e2b270457c25d4288ce003ce9fc6c7, type: 2}
+  - {fileID: 11400000, guid: d8e320fb96196f148ad3db73baab5d56, type: 2}
+  - {fileID: 11400000, guid: 27787624f567cdf488e97e087bf5eb2e, type: 2}
+  - {fileID: 11400000, guid: 61b1e7ef3426fe04fb816dc395b1926c, type: 2}
+  - {fileID: 11400000, guid: db8ba46737a71ea49b0014da2d2bade9, type: 2}
+  - {fileID: 11400000, guid: 02727fffe024fa74cb811770a358360c, type: 2}
+  - {fileID: 11400000, guid: 8cc7c9b5c3cbfd7429b9ca076baee76c, type: 2}
+  - {fileID: 11400000, guid: ec8d358b55ba1d14583f8649460ab21b, type: 2}
+  - {fileID: 11400000, guid: 60fab0f989d7999419160370f2a4af82, type: 2}
+  - {fileID: 11400000, guid: 35106fc230142354d93e3a43d7f076bf, type: 2}
+  automaticallyLoaded: 1
+  generateAsPartialClass: 1
+  generateAsBaseClass: 0
+  generatedFileLocationPath: Assets/_Project/Generated/Scripts
+  generatedStaticClassFileName: InputSpriteAssetCollectionStatic
+  generateStaticFileNamespace: BrunoMikoski.InputSpriteMap
+  targetSpriteAssetGuid: ce925c4dc38cc4d4fbe19d36dd17e2ae
+  identifiers:
+  - SteamDeck
+  bindingPrefixes:
+  - <Gamepad>
+  - <Joystick>

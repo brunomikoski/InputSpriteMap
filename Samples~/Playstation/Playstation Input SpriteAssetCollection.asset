@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d678e2bd3a04b004198e380e52cb413c, type: 3}
+  m_Name: Playstation Input SpriteAssetCollection
+  m_EditorClassIdentifier: 
+  guid:
+    value1: 5595051937248119794
+    value2: -3914716142955780977
+  items:
+  - {fileID: 11400000, guid: d4d25bbb3c65f7d44bd0715681d74bf4, type: 2}
+  - {fileID: 11400000, guid: cd58a08a66503f74db7c32a1aefd031d, type: 2}
+  - {fileID: 11400000, guid: 6bca9d16c46fe4346abdee6caa4f9f78, type: 2}
+  - {fileID: 11400000, guid: 9e6ce021185882f409c472102b3bdcdd, type: 2}
+  - {fileID: 11400000, guid: aeda0114c9a548a47a188e0d176e3a76, type: 2}
+  - {fileID: 11400000, guid: 748d51290818b1243a97ae353860e03a, type: 2}
+  - {fileID: 11400000, guid: dcbe7a7f3aabe8445a6e1aa135c2e8d5, type: 2}
+  - {fileID: 11400000, guid: 23ea86d759d76da458562a6125df83e6, type: 2}
+  - {fileID: 11400000, guid: 4cedeffb33bbd4e4fbe712619870a93d, type: 2}
+  - {fileID: 11400000, guid: 5918e33c1b1ac3046af8b6ad8f94a801, type: 2}
+  - {fileID: 11400000, guid: fee29472b6eb69e41a9a9a8d8cbf7da0, type: 2}
+  - {fileID: 11400000, guid: 959f649a9eb351348a3c9581310069f0, type: 2}
+  - {fileID: 11400000, guid: 18481caa45d781a489b42f57f3041b13, type: 2}
+  - {fileID: 11400000, guid: 39a2151bab42e7a4fa6e04078ff2c06d, type: 2}
+  - {fileID: 11400000, guid: f8f1aff76f02a8d4c85cd76027e801a2, type: 2}
+  - {fileID: 11400000, guid: 05e1fe7ca41c5b24887cd26e98ba742d, type: 2}
+  - {fileID: 11400000, guid: 2a27fd893366ad24692a2e61ff152f08, type: 2}
+  - {fileID: 11400000, guid: 98bfed21501572a4aa99a6817a0f57a6, type: 2}
+  - {fileID: 11400000, guid: 837649ad0d2ad0b4095967b919a4c437, type: 2}
+  - {fileID: 11400000, guid: d28026bd0b953914ba0d6a9072e4ce0f, type: 2}
+  - {fileID: 11400000, guid: 6179a63ded243a84382ecf1d0c737a52, type: 2}
+  - {fileID: 11400000, guid: 88a9b881f6f18c241aed3310859cd0c6, type: 2}
+  - {fileID: 11400000, guid: 975c2e788b768aa45b357045861dc9c7, type: 2}
+  automaticallyLoaded: 1
+  generateAsPartialClass: 1
+  generateAsBaseClass: 0
+  generatedFileLocationPath: Assets/_Project/Generated/Scripts
+  generatedStaticClassFileName: PlaystationInputSpriteAssetCollectionStatic
+  generateStaticFileNamespace: BrunoMikoski.InputSpriteMap
+  targetSpriteAssetGuid: f4d102b0c22ddd64b805b089b7d69ecb
+  identifiers:
+  - Playstation
+  bindingPrefixes:
+  - <Gamepad>
+  - <Joystick>

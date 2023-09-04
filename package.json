@@ -1,0 +1,54 @@
+{
+  "name": "com.brunomikoski.inputspritemap",
+  "displayName": "Input Sprite Map",
+  "version": "1.0.0",
+  "unity": "2021.2",
+  "description": "Input display",
+  "keywords": [
+    "scriptable object",
+    "collection",
+    "code generation"
+  ],
+  "category": "editor extensions",
+  "homepage": "https://github.com/brunomikoski/InputSpriteMap",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunomikoski/InputSpriteMap.git"
+  },
+  "bugs": "https://github.com/brunomikoski/InputSpriteMap/issues",
+  "author": {
+    "name": "Bruno Mikoski",
+    "url": "https://www.brunomikoski.com"
+  },
+  "type": "library",
+  "samples": [
+    {
+      "displayName": "PC",
+      "description": "Import PC related input files",
+      "path": "Samples~/PC"
+    },
+    {
+      "displayName": "Playstation",
+      "description": "Import Playstation related input files",
+      "path": "Samples~/Playstation"
+    },
+    {
+      "displayName": "SteamDeck",
+      "description": "Import SteamDeck related input files",
+      "path": "Samples~/SteamDeck"
+    },
+    {
+      "displayName": "Xbox",
+      "description": "Import Xbox related input files",
+      "path": "Samples~/Xbox"
+    },
+    {
+      "displayName": "Switch",
+      "description": "Import Switch related input files",
+      "path": "Samples~/Switch"
+    }
+  ],
+  "dependencies": {
+    "com.brunomikoski.scriptableobjectcollection": "2.0.9"
+  }
+}

@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d678e2bd3a04b004198e380e52cb413c, type: 3}
+  m_Name: Switch Input SpriteAssetCollection
+  m_EditorClassIdentifier: 
+  guid:
+    value1: 4622997256808473977
+    value2: 7086646262839034501
+  items:
+  - {fileID: 11400000, guid: d5168a2941403054e81994fa22b3f31e, type: 2}
+  - {fileID: 11400000, guid: 5ff265a311e0d3944bf31d716435841b, type: 2}
+  - {fileID: 11400000, guid: f3f1d48fc2881f44993171aa39e5f8f2, type: 2}
+  - {fileID: 11400000, guid: caf053d550ce5c04499f4ec6e89bbe7d, type: 2}
+  - {fileID: 11400000, guid: f9011704bc429c749a4a589dd06cd09b, type: 2}
+  - {fileID: 11400000, guid: 5805e7dcc1f4d9f4898f6af098024ff7, type: 2}
+  - {fileID: 11400000, guid: 119ff441ff60b79498e494b4672a551c, type: 2}
+  - {fileID: 11400000, guid: 7f6991c5ded6e9a49b29e40d4e956cd3, type: 2}
+  - {fileID: 11400000, guid: 5120e67f00c18d443b9fe8050bd728b2, type: 2}
+  - {fileID: 11400000, guid: aeb1f174858492440bdc71eb3056ce63, type: 2}
+  - {fileID: 11400000, guid: 6d5b48c43f4c16c479f6805c47a20d6e, type: 2}
+  - {fileID: 11400000, guid: 5c42ed96dad40b541965ad33611c12ea, type: 2}
+  - {fileID: 11400000, guid: 92879ed6a5bb15f4fbdc7ecf29e202ae, type: 2}
+  - {fileID: 11400000, guid: 2e9ddfff3d1f729449009a35e175faae, type: 2}
+  - {fileID: 11400000, guid: a8c028f95416955458f962fbef880d0b, type: 2}
+  - {fileID: 11400000, guid: b1d3b33f9daf81f4c941ea7a05514714, type: 2}
+  - {fileID: 11400000, guid: 39db9a2311aa1564d873e450d853ab19, type: 2}
+  - {fileID: 11400000, guid: b97cb452f9e4cf249bcded61787fa557, type: 2}
+  - {fileID: 11400000, guid: d831890368e51ae44b76436659f03215, type: 2}
+  - {fileID: 11400000, guid: 30c7c1b6a0e491a4da8735f535874bc0, type: 2}
+  - {fileID: 11400000, guid: 7d1a1ed4d6b739c4ab30ab41d299c5bd, type: 2}
+  - {fileID: 11400000, guid: 5170801cfecfffb4e811d97e35619516, type: 2}
+  - {fileID: 11400000, guid: 6256591542668a04daa122e081a183f9, type: 2}
+  - {fileID: 11400000, guid: c5bc138e97e33c841a60f45e910cc3de, type: 2}
+  - {fileID: 11400000, guid: d1ac819b03702e1428bcdd27d3ab2f13, type: 2}
+  - {fileID: 11400000, guid: 14187c16a201f35488c3a7b9c7340816, type: 2}
+  - {fileID: 11400000, guid: 026b3b5e448effc46a6fb901f90973a4, type: 2}
+  - {fileID: 11400000, guid: 50bd6e2a86fc6ec44a71fd00cb737fe1, type: 2}
+  - {fileID: 11400000, guid: d30b993ae4a648c4ba04c93074995eb2, type: 2}
+  - {fileID: 11400000, guid: 0e9d281025643364698d7844743de558, type: 2}
+  - {fileID: 11400000, guid: ba0341caefa22384dbc899c2d74c1d6b, type: 2}
+  automaticallyLoaded: 1
+  generateAsPartialClass: 1
+  generateAsBaseClass: 0
+  generatedFileLocationPath: Assets/_Project/Generated/Scripts
+  generatedStaticClassFileName: SwitchSpriteAssetCollectionStatic
+  generateStaticFileNamespace: BrunoMikoski.InputSpriteMap
+  targetSpriteAssetGuid: fd47ed11fcbf1d141ae99527268109c1
+  identifiers:
+  - Switch
+  bindingPrefixes:
+  - <Gamepad>
+  - <Joystick>
