@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using BrunoMikoski.ScriptableObjectCollections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
@@ -54,12 +53,13 @@ namespace BrunoMikoski.InputSpriteMap
             InputDeviceChangedEvent = null;
         }
 
-
-        [MenuItem("Tools/Input Sprite Map/Clear Cache")]
+#if UNITY_EDITOR
+        [UnityEditor.MenuItem("Tools/Input Sprite Map/Clear Cache")]
         public static void ClearCache()
         {
             Clear();
         }
+#endif
 
         public static string ParseInputControls(string format, params InputControl[] controls)
         {
