@@ -55,11 +55,5 @@ namespace BrunoMikoski.InputSpriteMap
                     InputParser.ClearCache();
             }
         }
-
-        protected override void HideProperties()
-        {
-            base.HideProperties();
-            ExcludeProperty(SpriteAssetGuidPropertyName);
-        }
     }
 }
