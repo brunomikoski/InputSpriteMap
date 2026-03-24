@@ -5,10 +5,21 @@ using UnityEngine.InputSystem;
 
 namespace BrunoMikoski.InputSpriteMap
 {
+    public enum InputType
+    {
+        Generic,
+        MouseAndKeyboard,
+        Playstation,
+        Xbox,
+        Switch,
+        SteamDeck
+    }
+
+
     [CreateAssetMenu(menuName = "ScriptableObject Collection/Collections/Input/Create InputSpriteAssetCollection", fileName = "InputSpriteAssetCollection", order = 0)]
     public class SpriteAssetCollection : ScriptableObjectCollection<SpriteAssetId>
     {
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private string targetSpriteAssetGuid;
         public string TargetSpriteAssetGuid => targetSpriteAssetGuid;
 
