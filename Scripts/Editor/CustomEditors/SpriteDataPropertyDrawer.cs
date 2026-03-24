@@ -59,7 +59,7 @@ namespace BrunoMikoski.InputSpriteMap
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             float lineHeight = EditorGUIUtility.singleLineHeight;
-            SerializedProperty inputTypeProperty = property.FindPropertyRelative("InputType");
+            SerializedProperty inputTypeProperty = property.FindPropertyRelative("PlatformType");
             SerializedProperty spriteNameProperty = property.FindPropertyRelative("SpriteName");
             SerializedProperty spriteGuidProperty = property.FindPropertyRelative("SpriteGuid");
 

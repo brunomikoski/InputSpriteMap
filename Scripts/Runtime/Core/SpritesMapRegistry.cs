@@ -10,7 +10,7 @@ namespace BrunoMikoski.InputSpriteMap
     [Serializable]
     public class PlatformToSprite
     {
-        public InputType InputType;
+        public PlatformType PlatformType;
         public string SpriteName;
         public string SpriteGuid;
     }
@@ -27,12 +27,23 @@ namespace BrunoMikoski.InputSpriteMap
     {
         private const string MissingSpriteTag = @"<sprite name=""????""/>";
 
+        [field: SerializeField]
+        private bool _showLogs;
+
         [SerializeField]
         public SpriteData[] spriteData;
 
         private readonly Dictionary<string, string> _displayStringCache = new Dictionary<string, string>();
 
-        public bool TryGetSpriteName(string inputName, InputType inputType, out string spriteName)
+        private void Log(string message)
+        {
+            if (!_showLogs)
+                return;
+
+            Debug.Log($"[SpritesMapRegistry] {message}", this);
+        }
+
+        public bool TryGetSpriteName(string inputName, PlatformType platformType, out string spriteName)
         {
             if (spriteData == null)
             {
@@ -49,17 +60,19 @@ namespace BrunoMikoski.InputSpriteMap
                 if (!string.Equals(data.Name, inputName, StringComparison.OrdinalIgnoreCase))
                     continue;
 
-                if (TryGetSpriteNameFromPlatformEntries(data.PlatformToSprite, inputType, out spriteName))
+                Log($"TryGetSpriteName: matched data name '{data.Name}' for input '{inputName}', platform={platformType}");
+                if (TryGetSpriteNameFromPlatformEntries(data.PlatformToSprite, inputName, platformType, out spriteName))
                     return true;
             }
 
+            Log($"TryGetSpriteName: no match for input '{inputName}', platform={platformType}");
             spriteName = string.Empty;
             return false;
         }
 
-        public bool TryGetSpriteTag(string inputName, InputType inputType, out string spriteTag)
+        public bool TryGetSpriteTag(string inputName, PlatformType platformType, out string spriteTag)
         {
-            if (TryGetSpriteName(inputName, inputType, out string spriteName))
+            if (TryGetSpriteName(inputName, platformType, out string spriteName))
             {
                 spriteTag = BuildSpriteTag(spriteName);
                 return true;
@@ -71,7 +84,7 @@ namespace BrunoMikoski.InputSpriteMap
 
         public string GetDisplayStringForInput(
             InputAction inputAction,
-            InputType inputType,
+            PlatformType platformType,
             int specificBindingIndex = -1,
             string compositionSeparator = "",
             string[] specifyCompositeNames = null,
@@ -81,9 +94,14 @@ namespace BrunoMikoski.InputSpriteMap
             if (inputAction == null)
                 return string.Empty;
 
-            string cacheKey = BuildCacheKey(inputAction, inputType, specificBindingIndex, compositionSeparator, specifyCompositeNames, onlyFirstResult, useMissingTagWhenNotFound);
+            string cacheKey = BuildCacheKey(inputAction, platformType, specificBindingIndex, compositionSeparator, specifyCompositeNames, onlyFirstResult, useMissingTagWhenNotFound);
             if (_displayStringCache.TryGetValue(cacheKey, out string cached))
+            {
+                Log($"GetDisplayStringForInput: cache hit action='{inputAction.name}' platform={platformType} -> '{cached}'");
                 return cached;
+            }
+
+            Log($"GetDisplayStringForInput: action='{inputAction.name}' id={inputAction.id} platform={platformType} bindingCount={inputAction.bindings.Count} onlyFirst={onlyFirstResult} specificIndex={specificBindingIndex}");
 
             List<string> actionBindings = new List<string>();
             List<string> currentCompositeItems = new List<string>();
@@ -118,13 +136,22 @@ namespace BrunoMikoski.InputSpriteMap
                 if (string.IsNullOrEmpty(inputName))
                     continue;
 
-                if (TryGetSpriteTag(inputName, inputType, out string spriteTag))
+                Log(
+                    $"  binding[{i}] path='{bindingPath}' parsed='{inputName}' isComposite={binding.isComposite} partOfComposite={binding.isPartOfComposite} partName='{binding.name}'");
+
+                if (TryGetSpriteTag(inputName, platformType, out string spriteTag))
                 {
+                    Log($"  -> sprite tag: {spriteTag}");
                     currentCompositeItems.Add(spriteTag);
                 }
                 else if (useMissingTagWhenNotFound)
                 {
+                    Log("  -> no mapping, using missing tag");
                     currentCompositeItems.Add(MissingSpriteTag);
+                }
+                else
+                {
+                    Log($"  -> no mapping for '{inputName}' on {platformType}");
                 }
             }
 
@@ -135,9 +162,11 @@ namespace BrunoMikoski.InputSpriteMap
 
             string result = string.Join(compositionSeparator, actionBindings);
             _displayStringCache[cacheKey] = result;
+            Log($"GetDisplayStringForInput: result='{result}'");
             return result;
         }
 
+        [ContextMenu("Clear Display String Cache")]
         public void ClearCache()
         {
             _displayStringCache.Clear();
@@ -160,27 +189,59 @@ namespace BrunoMikoski.InputSpriteMap
                 _displayStringCache.Remove(keysToRemove[i]);
         }
 
-        private static bool TryGetSpriteNameFromPlatformEntries(PlatformToSprite[] platformEntries, InputType inputType, out string spriteName)
+        private bool TryGetSpriteNameFromPlatformEntries(PlatformToSprite[] platformEntries, string inputNameForLog, PlatformType platformType, out string spriteName)
         {
             if (platformEntries == null)
             {
+                Log($"  PlatformEntries: null for input '{inputNameForLog}'");
                 spriteName = string.Empty;
                 return false;
+            }
+
+            Log($"  PlatformEntries: resolving '{inputNameForLog}' platform={platformType} entryCount={platformEntries.Length}");
+
+            for (int i = 0; i < platformEntries.Length; i++)
+            {
+                PlatformToSprite platformToSprite = platformEntries[i];
+                if (platformToSprite.PlatformType != platformType)
+                {
+                    continue;
+                }
+
+                if (string.IsNullOrWhiteSpace(platformToSprite.SpriteName))
+                {
+                    continue;
+                }
+
+                Log($"    [{i}] CHOSEN (exact): flags={platformToSprite.PlatformType} sprite='{platformToSprite.SpriteName}'");
+                spriteName = platformToSprite.SpriteName;
+                return true;
             }
 
             for (int i = 0; i < platformEntries.Length; i++)
             {
                 PlatformToSprite platformToSprite = platformEntries[i];
-                if (platformToSprite.InputType != inputType)
+                if (platformToSprite.PlatformType == PlatformType.None)
+                {
                     continue;
+                }
+
+                if (!platformToSprite.PlatformType.HasAnyFlagFast(platformType))
+                {
+                    continue;
+                }
 
                 if (string.IsNullOrWhiteSpace(platformToSprite.SpriteName))
+                {
                     continue;
+                }
 
+                Log($"    [{i}] CHOSEN (overlap): entryFlags={platformToSprite.PlatformType} query={platformType} sprite='{platformToSprite.SpriteName}'");
                 spriteName = platformToSprite.SpriteName;
                 return true;
             }
 
+            Log($"  PlatformEntries: no match for '{inputNameForLog}' on {platformType}");
             spriteName = string.Empty;
             return false;
         }
@@ -229,7 +290,7 @@ namespace BrunoMikoski.InputSpriteMap
 
         private static string BuildCacheKey(
             InputAction inputAction,
-            InputType inputType,
+            PlatformType platformType,
             int specificBindingIndex,
             string compositionSeparator,
             string[] specifyCompositeNames,
@@ -239,7 +300,7 @@ namespace BrunoMikoski.InputSpriteMap
             StringBuilder builder = new StringBuilder();
             builder.Append(inputAction.id);
             builder.Append('|');
-            builder.Append(inputType);
+            builder.Append(platformType);
             builder.Append('|');
             builder.Append(specificBindingIndex);
             builder.Append('|');

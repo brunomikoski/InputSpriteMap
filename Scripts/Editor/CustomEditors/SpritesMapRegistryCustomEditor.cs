@@ -111,23 +111,23 @@ namespace BrunoMikoski.InputSpriteMap
 
         private void GenerateGenericGamepadDefaults()
         {
-            int addedCount = GenerateDefaults(GenericGamepadIdentifiers, InputType.Generic);
+            int addedCount = GenerateDefaults(GenericGamepadIdentifiers, PlatformType.MouseAndKeyboard);
             Debug.Log($"SpritesMapRegistry generic gamepad defaults complete. Added {addedCount} new entries.");
         }
 
         private void GenerateMouseAndKeyboardDefaults()
         {
-            int addedCount = GenerateDefaults(MouseAndKeyboardIdentifiers, InputType.MouseAndKeyboard);
+            int addedCount = GenerateDefaults(MouseAndKeyboardIdentifiers, PlatformType.MouseAndKeyboard);
             Debug.Log($"SpritesMapRegistry mouse + keyboard defaults complete. Added {addedCount} new entries.");
         }
 
         private void GenerateUiActionDefaults()
         {
-            int addedCount = GenerateDefaults(UiActionIdentifiers, InputType.Generic);
+            int addedCount = GenerateDefaults(UiActionIdentifiers, PlatformType.MouseAndKeyboard);
             Debug.Log($"SpritesMapRegistry UI action defaults complete. Added {addedCount} new entries.");
         }
 
-        private int GenerateDefaults(string[] namesToAdd, InputType inputType)
+        private int GenerateDefaults(string[] namesToAdd, PlatformType platformType)
         {
             serializedObject.Update();
 
@@ -154,7 +154,7 @@ namespace BrunoMikoski.InputSpriteMap
                 SerializedProperty spriteNameProperty = platformEntry.FindPropertyRelative("SpriteName");
                 SerializedProperty spriteGuidProperty = platformEntry.FindPropertyRelative("SpriteGuid");
 
-                inputTypeProperty.enumValueIndex = (int)inputType;
+                inputTypeProperty.enumValueIndex = (int)platformType;
                 spriteNameProperty.stringValue = string.Empty;
                 spriteGuidProperty.stringValue = string.Empty;
 

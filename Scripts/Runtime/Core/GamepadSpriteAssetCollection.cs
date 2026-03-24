@@ -1,13 +1,14 @@
 using System;
+using BrunoMikoski.ScriptableObjectCollections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BrunoMikoski.InputSpriteMap
 {
     [CreateAssetMenu(menuName = "ScriptableObject Collection/Collections/Input/Create GamepadSpriteAssetCollection", fileName = "GamepadSpriteAssetCollection", order = 0)]
-    public class GamepadSpriteAssetCollection : SpriteAssetCollection
+    public class GamepadSpriteAssetCollection : ScriptableObjectCollection<SpriteAssetId>
     {
-        public override string ParseInputControlName(InputControl targetInputControl)
+        public virtual string ParseInputControlName(InputControl targetInputControl)
         {
             string targetBindingName = targetInputControl.name;
             if (targetInputControl.path.IndexOf("dpad", StringComparison.OrdinalIgnoreCase) > -1)
