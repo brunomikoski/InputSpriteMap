@@ -25,10 +25,36 @@ namespace BrunoMikoski.InputSpriteMap
     [CreateAssetMenu(menuName = "Input Sprite Map/Sprites Map Registry", fileName = "SpritesMapRegistry", order = 0)]
     public class SpritesMapRegistry : ScriptableObject
     {
+#if UNITY_EDITOR
+        private static SpritesMapRegistry _cachedEditorSpriteMapRegistry;
+        private static bool _hasCachedEditorSpriteMapRegistry;
+
+        public static SpritesMapRegistry FromAssetDatabase()
+        {
+            if (!_hasCachedEditorSpriteMapRegistry)
+            {
+                string[] guids = UnityEditor.AssetDatabase.FindAssets($"t:{nameof(SpritesMapRegistry)}");
+                if (guids.Length == 0)
+                {
+                    throw new Exception($"Could not find {nameof(SpritesMapRegistry)} asset, create one by the Create/Input Sprite Map/Sprites Map Registry");
+                }
+                _cachedEditorSpriteMapRegistry = UnityEditor.AssetDatabase.LoadAssetAtPath<SpritesMapRegistry>(UnityEditor.AssetDatabase.GUIDToAssetPath(guids[0]));;
+                _hasCachedEditorSpriteMapRegistry = _cachedEditorSpriteMapRegistry != null;
+            }
+
+            return _cachedEditorSpriteMapRegistry;
+            
+        }
+        
+#endif
+        
         private const string MissingSpriteTag = @"<sprite name=""????""/>";
 
         [field: SerializeField]
         private bool _showLogs;
+        [SerializeField]
+        private  bool _cacheEnabled = true;
+
 
         [SerializeField]
         public SpriteData[] spriteData;
@@ -82,26 +108,28 @@ namespace BrunoMikoski.InputSpriteMap
             return false;
         }
 
-        public string GetDisplayStringForInput(
-            InputAction inputAction,
-            PlatformType platformType,
-            int specificBindingIndex = -1,
-            string compositionSeparator = "",
-            string[] specifyCompositeNames = null,
-            bool onlyFirstResult = true,
+        public string GetDisplayStringForInput(InputAction inputAction, PlatformType platformType, int specificBindingIndex = -1, string compositionSeparator = "", string[] specifyCompositeNames = null, bool onlyFirstResult = true,
             bool useMissingTagWhenNotFound = false)
         {
             if (inputAction == null)
                 return string.Empty;
 
-            string cacheKey = BuildCacheKey(inputAction, platformType, specificBindingIndex, compositionSeparator, specifyCompositeNames, onlyFirstResult, useMissingTagWhenNotFound);
-            if (_displayStringCache.TryGetValue(cacheKey, out string cached))
+            string cacheKey = BuildCacheKey(
+                inputAction,
+                platformType,
+                specificBindingIndex,
+                compositionSeparator,
+                specifyCompositeNames,
+                onlyFirstResult,
+                useMissingTagWhenNotFound);
+            if (_cacheEnabled && _displayStringCache.TryGetValue(cacheKey, out string cached))
             {
                 Log($"GetDisplayStringForInput: cache hit action='{inputAction.name}' platform={platformType} -> '{cached}'");
                 return cached;
             }
 
-            Log($"GetDisplayStringForInput: action='{inputAction.name}' id={inputAction.id} platform={platformType} bindingCount={inputAction.bindings.Count} onlyFirst={onlyFirstResult} specificIndex={specificBindingIndex}");
+            Log(
+                $"GetDisplayStringForInput: action='{inputAction.name}' id={inputAction.id} platform={platformType} bindingCount={inputAction.bindings.Count} onlyFirst={onlyFirstResult} specificIndex={specificBindingIndex}");
 
             List<string> actionBindings = new List<string>();
             List<string> currentCompositeItems = new List<string>();
@@ -111,9 +139,6 @@ namespace BrunoMikoski.InputSpriteMap
             for (int i = startIndex; i < bindings.Count; i++)
             {
                 InputBinding binding = bindings[i];
-                string bindingPath = binding.effectivePath;
-                if (string.IsNullOrEmpty(bindingPath))
-                    continue;
 
                 if (binding.isComposite)
                 {
@@ -122,6 +147,13 @@ namespace BrunoMikoski.InputSpriteMap
                         break;
                     continue;
                 }
+
+                string bindingPath = binding.effectivePath;
+                if (string.IsNullOrEmpty(bindingPath))
+                    bindingPath = binding.path;
+
+                if (string.IsNullOrEmpty(bindingPath))
+                    continue;
 
                 if (!binding.isPartOfComposite && (onlyFirstResult || specificBindingIndex >= 0))
                 {
