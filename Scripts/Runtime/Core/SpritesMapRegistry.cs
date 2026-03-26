@@ -48,8 +48,6 @@ namespace BrunoMikoski.InputSpriteMap
         
 #endif
         
-        private const string MissingSpriteTag = @"<sprite name=""????""/>";
-
         [field: SerializeField]
         private bool _showLogs;
         [SerializeField]
@@ -133,6 +131,7 @@ namespace BrunoMikoski.InputSpriteMap
 
             List<string> actionBindings = new List<string>();
             List<string> currentCompositeItems = new List<string>();
+            List<string> missingInputNames = new List<string>();
 
             int startIndex = specificBindingIndex >= 0 ? specificBindingIndex : 0;
             ReadOnlyArray<InputBinding> bindings = inputAction.bindings;
@@ -176,14 +175,17 @@ namespace BrunoMikoski.InputSpriteMap
                     Log($"  -> sprite tag: {spriteTag}");
                     currentCompositeItems.Add(spriteTag);
                 }
-                else if (useMissingTagWhenNotFound)
-                {
-                    Log("  -> no mapping, using missing tag");
-                    currentCompositeItems.Add(MissingSpriteTag);
-                }
                 else
                 {
-                    Log($"  -> no mapping for '{inputName}' on {platformType}");
+                    if (useMissingTagWhenNotFound)
+                    {
+                        Log($"  -> no mapping for '{inputName}' on {platformType}, tracking missing label fallback");
+                        missingInputNames.Add(inputName);
+                    }
+                    else
+                    {
+                        Log($"  -> no mapping for '{inputName}' on {platformType}");
+                    }
                 }
             }
 
@@ -191,6 +193,15 @@ namespace BrunoMikoski.InputSpriteMap
 
             if (onlyFirstResult && actionBindings.Count > 1)
                 actionBindings.RemoveRange(1, actionBindings.Count - 1);
+
+            if (useMissingTagWhenNotFound && actionBindings.Count == 0 && missingInputNames.Count > 0)
+            {
+                int missingCount = onlyFirstResult ? 1 : missingInputNames.Count;
+                for (int i = 0; i < missingCount; i++)
+                {
+                    actionBindings.Add(BuildMissingLabel(missingInputNames[i]));
+                }
+            }
 
             string result = string.Join(compositionSeparator, actionBindings);
             _displayStringCache[cacheKey] = result;
@@ -318,6 +329,11 @@ namespace BrunoMikoski.InputSpriteMap
         private static string BuildSpriteTag(string spriteName)
         {
             return $@"<sprite name=""{spriteName}""/>";
+        }
+
+        private static string BuildMissingLabel(string parsedInputName)
+        {
+            return $"[Missing] {parsedInputName}";
         }
 
         private static string BuildCacheKey(
