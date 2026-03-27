@@ -41,5 +41,10 @@ namespace BrunoMikoski.InputSpriteMap
         {
             return EmojiOneAsset.fallbackSpriteAssets.Contains(spriteAsset);
         }
+
+        public static void ClearSpriteSheetReferences()
+        {
+            EmojiOneAsset.fallbackSpriteAssets.Clear();
+        }
     }
 }
