@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -35,6 +36,11 @@ namespace BrunoMikoski.InputSpriteMap
             
             EmojiOneAsset.fallbackSpriteAssets.Add(spriteAsset);
             ObjectUtility.SetDirty(EmojiOneAsset);
+        }
+
+        public static void SetSpiteFallbackList(List<TMP_SpriteAsset> spriteAssets)
+        {
+            EmojiOneAsset.fallbackSpriteAssets = spriteAssets;
         }
 
         public static bool ContainsSpriteAsset(TMP_SpriteAsset spriteAsset)
