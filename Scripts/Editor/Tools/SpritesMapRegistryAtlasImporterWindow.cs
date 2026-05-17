@@ -34,7 +34,11 @@ namespace BrunoMikoski.InputSpriteMap
             public string spriteGuid = string.Empty;
         }
 
+#if UNITY_6000_1_OR_NEWER
+        private sealed class ParsedSpriteTreeViewItem : TreeViewItem<int>
+#else
         private sealed class ParsedSpriteTreeViewItem : TreeViewItem
+#endif
         {
             public int sourceIndex;
 
@@ -44,13 +48,21 @@ namespace BrunoMikoski.InputSpriteMap
             }
         }
 
+#if UNITY_6000_1_OR_NEWER
+        private sealed class ParsedSpritesTreeView : TreeView<int>
+#else
         private sealed class ParsedSpritesTreeView : TreeView
+#endif
         {
             private readonly List<ParsedSpriteEntry> _entries;
             private string _searchText = string.Empty;
             private bool _showOnlySelected;
 
+#if UNITY_6000_1_OR_NEWER
+            public ParsedSpritesTreeView(TreeViewState<int> state, MultiColumnHeader header, List<ParsedSpriteEntry> entries)
+#else
             public ParsedSpritesTreeView(TreeViewState state, MultiColumnHeader header, List<ParsedSpriteEntry> entries)
+#endif
                 : base(state, header)
             {
                 _entries = entries;
@@ -67,6 +79,30 @@ namespace BrunoMikoski.InputSpriteMap
                 Reload();
             }
 
+#if UNITY_6000_1_OR_NEWER
+            protected override TreeViewItem<int> BuildRoot()
+            {
+                TreeViewItem<int> root = new TreeViewItem<int> { id = -1, depth = -1 };
+                List<TreeViewItem<int>> rows = new List<TreeViewItem<int>>();
+                int id = 0;
+                for (int i = 0; i < _entries.Count; i++)
+                {
+                    ParsedSpriteEntry entry = _entries[i];
+                    if (!PassesFilters(entry))
+                        continue;
+
+                    rows.Add(new ParsedSpriteTreeViewItem(id++, i));
+                }
+
+                root.children = rows;
+                return root;
+            }
+
+            protected override bool CanMultiSelect(TreeViewItem<int> item)
+            {
+                return false;
+            }
+#else
             protected override TreeViewItem BuildRoot()
             {
                 TreeViewItem root = new TreeViewItem { id = -1, depth = -1 };
@@ -89,6 +125,7 @@ namespace BrunoMikoski.InputSpriteMap
             {
                 return false;
             }
+#endif
 
             protected override void RowGUI(RowGUIArgs args)
             {
@@ -217,7 +254,11 @@ namespace BrunoMikoski.InputSpriteMap
             header.sortedColumnIndex = SessionState.GetInt(SortedColumnKey, 3);
             header.sortingChanged += OnSortingChanged;
 
+#if UNITY_6000_1_OR_NEWER
+            ParsedSpritesTreeView treeView = new ParsedSpritesTreeView(new TreeViewState<int>(), header, _parsedSprites);
+#else
             ParsedSpritesTreeView treeView = new ParsedSpritesTreeView(new TreeViewState(), header, _parsedSprites);
+#endif
             treeView.Reload();
             return treeView;
         }
