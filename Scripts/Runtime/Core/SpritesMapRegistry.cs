@@ -69,6 +69,26 @@ namespace BrunoMikoski.InputSpriteMap
 
         public bool TryGetSpriteName(string inputName, PlatformType platformType, out string spriteName)
         {
+            string candidateName = inputName;
+            while (!string.IsNullOrEmpty(candidateName))
+            {
+                if (TryGetSpriteNameForControl(candidateName, platformType, out spriteName))
+                    return true;
+
+                int lastSeparatorIndex = candidateName.LastIndexOf('/');
+                if (lastSeparatorIndex < 0)
+                    break;
+
+                candidateName = candidateName.Substring(0, lastSeparatorIndex);
+            }
+
+            Log($"TryGetSpriteName: no match for input '{inputName}', platform={platformType}");
+            spriteName = string.Empty;
+            return false;
+        }
+
+        private bool TryGetSpriteNameForControl(string inputName, PlatformType platformType, out string spriteName)
+        {
             if (spriteData == null)
             {
                 spriteName = string.Empty;
@@ -89,7 +109,6 @@ namespace BrunoMikoski.InputSpriteMap
                     return true;
             }
 
-            Log($"TryGetSpriteName: no match for input '{inputName}', platform={platformType}");
             spriteName = string.Empty;
             return false;
         }
@@ -291,16 +310,12 @@ namespace BrunoMikoski.InputSpriteMap
 
         private static string ParseInputNameFromBindingPath(string bindingPath)
         {
-            int slashIndex = bindingPath.LastIndexOf('/');
-            if (slashIndex < 0 || slashIndex >= bindingPath.Length - 1)
+            int deviceEndIndex = bindingPath.IndexOf('>');
+            int controlStartIndex = bindingPath.IndexOf('/', deviceEndIndex + 1);
+            if (controlStartIndex < 0 || controlStartIndex >= bindingPath.Length - 1)
                 return string.Empty;
 
-            string parsed = bindingPath.Substring(slashIndex + 1);
-            int closeBracketIndex = parsed.IndexOf('}');
-            if (closeBracketIndex >= 0 && closeBracketIndex < parsed.Length - 1)
-                parsed = parsed.Substring(closeBracketIndex + 1);
-
-            return parsed.Trim();
+            return bindingPath.Substring(controlStartIndex + 1).Trim();
         }
 
         private static bool ShouldUseCompositePart(string partName, string[] specifyCompositeNames)
